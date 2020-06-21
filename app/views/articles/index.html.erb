@@ -2,7 +2,9 @@
 <ul id = articles>
   <% @articles.each do |a| %>
     <li>
-    <%= a.title %>
+    <%= link_to a.title, article_path(a), class: "article_title" %>
     </li>
-  <% end %>
-</ul>
+    <% end %>
+    </ul>
+<%= link_to "Create a new article", new_article_path, class: "new_article" %>
+    
