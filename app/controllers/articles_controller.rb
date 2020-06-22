@@ -1,4 +1,6 @@
 class ArticlesController < ApplicationController
+  include ArticlesHelper
+
   def index
     @articles = Article.all
   end
@@ -11,12 +13,36 @@ class ArticlesController < ApplicationController
     @article = Article.new
   end
 
+  # 1st version of create method(doesn't include ArticlesHelper)
+  # def create
+  #   @article = Article.new(
+    #   title: params[:article][:title],
+    #   body: params[:article][:body])
+    #   @article.save
+    #   redirect_to article_path(@article)
+    # end
+    
+  # 2nd version of create method(doesn't include ArticlesHelper)
+  # def create
+  #   @article = Article.new
+  #   @article.title = params[:article][:title]
+  #   @article.body = params[:article][:body]
+  #   @article.save
+  #   redirect_to article_path(@article)
+  # end
+  # def create
+  #   @article = Article.new(
+  #   title: params[:article][:title],
+  #   body: params[:article][:body])
+  #   @article.save
+  #   redirect_to article_path(@article)
+  # end
+  
+  # 3rd version of create method(includes ArticlesHelper)
   def create
-    @article = Article.new
-    @article.title = params[:article][:title]
+    @article = Article.new(article_params)
     @article.save
-    redirect_to articles_path
-
+    redirect_to article_path(@article)
   end
 
 end
