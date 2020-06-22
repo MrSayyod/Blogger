@@ -54,4 +54,6 @@ class ArticlesController < ApplicationController
   def edit
     @article = Article.find(params[:id])
   end
+
+  
 end
